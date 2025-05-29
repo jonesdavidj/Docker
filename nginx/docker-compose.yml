@@ -5,20 +5,20 @@ services:
   # Main application service configuration
   nginx:
     container_name: nginx # Unique identifier for this container to distinguish it from others
-    image: my-nginx # Specifies the Docker image version to use
+    image: $NGINX_IMAGE # Specifies the Docker image version to use
     platform: linux/arm/v7
     restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
     volumes:
      - nginx_templates:/etc/nginx/templates
      - nginx_config:/etc/nginx/my-config
-     - nas-nginx:/srv/pi_share
+     - $NGINX_NAS
     networks:
      - nginx_network
     ports:
-     - '8008:8008'
+     - '$NGINX_PORT:8008'
     environment:
-     - NGINX_HOST=raspberrypi.local
-     - NGINX_PORT=8008
+     - NGINX_HOST=$NGINX_HOST
+     - NGINX_PORT=$NGINX_PORT
 
 volumes:
   nginx_templates: # Named volume for PostgreSQL data persistence
