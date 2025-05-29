@@ -6,3 +6,6 @@ RUN apt-get update
 
 # Install vim
 RUN apt-get install -y vim
+
+# Install git
+RUN apt-get install -y git
