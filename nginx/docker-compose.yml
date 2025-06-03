@@ -15,7 +15,8 @@ services:
     networks:
      - nginx_network
     ports:
-     - '$NGINX_PORT:8008'
+     - '$NGINX_PORT_DEFAULT:8080'
+     - '$NGINX_PORT_BALACLAVA:8081'
     environment:
      - NGINX_HOST=$NGINX_HOST
      - NGINX_PORT=$NGINX_PORT
