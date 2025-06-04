@@ -16,7 +16,6 @@ services:
       - "$HUGO_PORT_DEFAULT:$HUGO_PORT_EXTERNAL"
     
 volumes:
-#  hugo_config: # Store for hugo configuration files
   nas-hugo:
     driver_opts:
       type: nfs
