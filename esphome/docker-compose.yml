@@ -25,7 +25,8 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: "addr=nas-home.local,rw,nfsvers=4"
+      # o: "addr=nas-home.local,rw,nfsvers=4"
+      o: "addr=nas-home.local,rw,nfsvers=3,soft,timeo=30,retrans=3"
       device: :/volume1/hs_esphome/
   
 # Network configuration section for defining how services will communicate internally
