@@ -6,7 +6,6 @@ services:
     container_name: hugo
     image: $HUGO_IMAGE
     platform: linux/arm/v7 # Specifies the platform architecture for the container
-    working_dir: /src
     volumes:
      - type: volume
        source: nas-hugo
