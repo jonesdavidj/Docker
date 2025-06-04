@@ -4,7 +4,7 @@ version: '3.8'
 services:
   hugo:
     build: .
-    image: $HUGO_IMAGE
+    image: "$HUGO_IMAGE"
     container_name: hugo
     volumes:
      - type: volume
