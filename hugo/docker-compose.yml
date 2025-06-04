@@ -1,0 +1,27 @@
+version: '3.8'
+
+# We are going to build a Docker container for Hugo that just contains the Go OS at this stage.  The Dockerfile will need to be created to hold the installation.
+services:
+  hugo:
+    build: .
+    container_name: hugo
+    volumes:
+     - type: volume
+       source: nas-hugo
+       target: /src
+    ports:
+      - "$HUGO_PORT_DEFAULT:$HUGO_PORT_EXTERNAL"
+
+volumes:
+#  esphome_config: # Store for espHome configuration files
+  nas-hugo:
+    driver_opts:
+      type: nfs
+      o: "addr=nas-home.local,rw,nfsvers=4"
+      device: :/volume1/hs_hugo/
+
+  
+# Network configuration section for defining how services will communicate internally
+networks:
+  esphome_network:
+    driver: bridge # Uses a bridge network for inter-service communication

@@ -28,7 +28,7 @@ volumes:
     driver_opts:
       type: nfs
       o: "addr=nas-home.local,rw,nfsvers=4"
-      device: :/volume1/pi_nginx/
+      device: :/volume1/hs_nginx/
 
 # Network configuration section for defining how services will communicate internally
 networks:
