@@ -6,7 +6,7 @@ services:
   esphome:
     container_name: esphome # Unique identifier for this container to distinguish it from others
     image: esphome/esphome:latest
-    platform: linux/arm/v7
+    # platform: linux/arm/v7
     restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
     volumes:
      - type: volume
