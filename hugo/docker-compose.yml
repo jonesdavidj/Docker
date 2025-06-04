@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.7'
 
 # We are going to build a Docker container for Hugo that just contains the Go OS at this stage.  The Dockerfile will need to be created to hold the installation.
 services:
