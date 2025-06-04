@@ -5,7 +5,7 @@ services:
   # Main application service configuration
   esphome:
     container_name: esphome # Unique identifier for this container to distinguish it from others
-    image: 	$ESPHOME_IMAGE # Specifies the Docker image version to use
+    image: esphome/esphome:latest
     platform: linux/arm/v7
     restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
     volumes:
