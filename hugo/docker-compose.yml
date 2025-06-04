@@ -4,6 +4,7 @@ version: '3.8'
 services:
   hugo:
     build: .
+    image: $HUGO_IMAGE
     container_name: hugo
     volumes:
      - type: volume
@@ -23,5 +24,5 @@ volumes:
   
 # Network configuration section for defining how services will communicate internally
 networks:
-  esphome_network:
+  hugo_network:
     driver: bridge # Uses a bridge network for inter-service communication
