@@ -22,6 +22,7 @@ services:
 volumes:
 #  esphome_config: # Store for espHome configuration files
   nas-esphome:
+    driver: local
     driver_opts:
       type: nfs
       o: "addr=nas-home.local,rw,nfsvers=4"
