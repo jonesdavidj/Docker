@@ -17,7 +17,10 @@ services:
       - hugo_network
     ports:
       - "$HUGO_PORT_DEFAULT:$HUGO_PORT_EXTERNAL"
-    
+    command: >
+      sh -c "apk add --no-cache hugo &&
+             cd /src &&
+             hugo server --bind 0.0.0.0 --port 1313"    
 volumes:
   nas-hugo:
     driver_opts:
