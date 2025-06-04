@@ -1,0 +1,33 @@
+version: "3.7" # Specifies the version of the Docker Compose file format
+
+# This section defines all the services that make up the application stack for nginx
+services:
+  # Main application service configuration
+  esphome:
+    container_name: esphome # Unique identifier for this container to distinguish it from others
+    image: 	$ESPHOME_IMAGE # Specifies the Docker image version to use
+    platform: linux/arm/v7
+    restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
+    volumes:
+     - type: volume
+       source: nas-esphome
+       target: /config
+    networks:
+     - esphome_network
+    ports:
+     - '$ESPHOME_PORT_EXTERNAL:$ESPHOME_PORT_DEFAULT'
+    environment:
+     - TZ=Europe/London
+
+volumes:
+#  esphome_config: # Store for espHome configuration files
+  nas-esphome:
+    driver_opts:
+      type: nfs
+      o: "addr=nas-home.local,rw,nfsvers=4"
+      device: :/volume1/pi_esphome/
+  
+# Network configuration section for defining how services will communicate internally
+networks:
+  esphome_network:
+    driver: bridge # Uses a bridge network for inter-service communication
