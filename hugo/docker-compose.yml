@@ -9,7 +9,7 @@ services:
     volumes:
      - type: volume
        source: nas-hugo
-       target: /src/sites
+       target: /config
     networks:
       - hugo_network
     ports:
