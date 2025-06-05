@@ -19,14 +19,14 @@ services:
       - "$HUGO_PORT_DEFAULT:$HUGO_PORT_EXTERNAL"
     command: >
       sh -c "apk add --no-cache hugo &&
-             cd /src &&
+             cd /srv/hs_hugo &&
              hugo server --bind 0.0.0.0 --port 1313"    
 volumes:
   nas-hugo:
     driver_opts:
       type: nfs
-      o: "addr=192.168.1.199,rw,nfsvers=4,soft,timeo=30,retrans=3"
-      device: :/volume1/hs_hugo/
+      o: "addr=nas-home.local,rw,nfsvers=4,soft,timeo=30,retrans=3"
+      device: nas-home.local:/volume1/hs_hugo/
 
 # Network configuration section for defining how services will communicate internally
 networks:
