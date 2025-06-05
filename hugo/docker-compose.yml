@@ -11,7 +11,7 @@ services:
       - 172.64.36.1
     volumes:
      - type: volume
-       source: nas-hugo
+       source: nas-hugo-vol
        target: /srv/hs_hugo
     networks:
       - hugo_network
@@ -22,7 +22,7 @@ services:
              cd /srv/hs_hugo &&
              hugo server --bind 0.0.0.0 --port 1313"    
 volumes:
-  nas-hugo:
+  nas-hugo-vol:
     driver_opts:
       type: nfs
       o: "addr=nas-home.local,rw,nfsvers=4,soft,timeo=30,retrans=3"
