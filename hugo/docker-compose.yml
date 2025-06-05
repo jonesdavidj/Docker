@@ -25,7 +25,7 @@ volumes:
   nas-hugo:
     driver_opts:
       type: nfs
-      o: "addr=nas-home.local,rw,nfsvers=4"
+      o: "addr=192.168.1.199,rw,nfsvers=4"
       device: :/volume1/hs_hugo/
 
 # Network configuration section for defining how services will communicate internally
