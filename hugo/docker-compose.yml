@@ -17,9 +17,14 @@ services:
       - hugo_network
     ports:
       - "$HUGO_PORT_DEFAULT:$HUGO_PORT_EXTERNAL"
+    # Now to go to the nfs mount on the nas, then to create a new Hugo site if one doesn't exist, and then run the Hugo server.
     command: >
       sh -c "apk add --no-cache hugo &&
              cd /srv/hs_hugo &&
+             if [ ! -f config.toml ] && [ ! -f config.yaml ] && [ ! -f config.yml ] && [ ! -f hugo.toml ] && [ ! -f hugo.yaml ] && [ ! -f hugo.yml ]; then 
+               echo 'No Hugo site found, creating new site...' &&
+               hugo new site . --force
+             fi &&
              hugo server --bind 0.0.0.0 --port 1313"    
 volumes:
   nas-hugo-vol:
