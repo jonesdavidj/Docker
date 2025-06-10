@@ -1,0 +1,41 @@
+version: "3.7" # Specifies the version of the Docker Compose file format
+
+# This section defines all the services that make up the application stack for nginx
+services:
+  # Main application service configuration
+  esphome:
+    container_name: pihole # Unique identifier for this container to distinguish it from others
+    image: pihole/pihole:latest
+    platform: linux/arm/v7, linux/x86_64 # Specifies the platforms this image supports, allowing it to run on both ARM and x86 architectures
+    restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
+    volumes:
+     - type: volume
+       source: nas-pihole/pihole
+       target: /pihole # Mounts a volume for persistent storage of Pi-hole data
+     #- type: volume - include this is I want pihole to have custom dnsmasq config files
+     #  source: nas-pihole/dnsmasq.d
+     #  target: /dnsmasq.d # Mounts a volume for DNS configuration files
+    networks:
+     - pihole_network
+    ports:
+     - 80:80/tcp
+     - 443:443/tcp
+     - 53:53/tcp
+     - 53:53/udp
+     # - 67:67/udp # Maps port 67 for DHCP requests
+    environment:
+     - TZ=Europe/London
+
+volumes:
+#  pihole_config: # Store for pihole database etc
+  nas-pihole:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: "addr=nas-home.local,rw,nfsvers=3,soft,timeo=30,retrans=3"
+      device: :/volume1/hs_pihole/
+  
+# Network configuration section for defining how services will communicate internally
+networks:
+  pihole_network:
+    driver: bridge # Uses a bridge network for inter-service communication
