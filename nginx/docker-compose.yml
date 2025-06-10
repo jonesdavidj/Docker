@@ -6,7 +6,7 @@ services:
   nginx:
     container_name: nginx # Unique identifier for this container to distinguish it from others
     image: $NGINX_IMAGE # Specifies the Docker image version to use
-    platform: linux/arm/v7, linux/x86_64
+    platform: linux/amd64
     restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
     volumes:
      - nginx_templates:/etc/nginx/templates
