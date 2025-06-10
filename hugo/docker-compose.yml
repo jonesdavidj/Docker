@@ -5,7 +5,8 @@ services:
   hugo:
     container_name: hugo
     image: golang:1.22-alpine
-    platform: linux/arm/v7 # Specifies the platform architecture for the container
+    platform: linux/arm/v7, linux/x86_64
+    restart: unless-stopped
     dns:
       - 192.168.1.1
       - 172.64.36.1
