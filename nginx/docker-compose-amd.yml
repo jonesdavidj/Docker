@@ -11,7 +11,7 @@ services:
     volumes:
      - nginx_templates:/etc/nginx/templates
      - nginx_config:/etc/nginx/my-config
-     - $NGINX_NAS
+     - nas-nginx:$NGINX_NAS
     networks:
      - nginx_network
     ports:
