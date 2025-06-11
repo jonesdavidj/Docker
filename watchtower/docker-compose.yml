@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    restart: unless-stopped
+    platform: linux/amd64
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_POLL_INTERVAL=300  # Check for updates every 5 minutes
+      # - WATCHTOWER_NOTIFICATIONS=shoutrrr  # Optional: enable notifications
+      # - WATCHTOWER_NOTIFICATION_URL=...  # Optional: provide notification URL
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      
