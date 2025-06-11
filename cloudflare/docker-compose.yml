@@ -1,0 +1,26 @@
+version: "3.8" # Specifies the version of the Docker Compose file format
+
+# This section defines all the services that make up the application stack for nginx
+services:
+  # Main application service configuration
+  cloudflared:
+    container_name: cloudflared # Unique identifier for this container to distinguish it from others
+    image: cloudflare/cloudflared:latest
+    platform: linux/x86_64
+    restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
+    command: tunnel --no-autoupdate run --token $TUNNEL_TOKEN # Command to run inside the container, using an environment variable for the token
+    volumes:
+     - type: volume
+       source: ./cloudflared
+       target: /etc/cloudflared # Mounts a volume for persistent storage of configuration files
+    networks:
+     - cloudflare_tunnel
+    ports:
+     - 5454:5454
+    environment:
+     - TZ=Europe/London
+
+# Network configuration section for defining how services will communicate internally
+networks:
+  cloudflare-tunnel:
+    driver: bridge # Uses a bridge network for inter-service communication
