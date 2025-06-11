@@ -1,0 +1,36 @@
+version: "3.7" # Specifies the version of the Docker Compose file format
+
+# This section defines all the services that make up the application stack for nginx
+services:
+  # Main application service configuration
+  nginx:
+    container_name: nginx # Unique identifier for this container to distinguish it from others
+    image: $NGINX_IMAGE # Specifies the Docker image version to use
+    platform: linux/arm/v7
+    restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
+    volumes:
+     - nginx_templates:/etc/nginx/templates
+     - nginx_config:/etc/nginx/my-config
+     - $NGINX_NAS
+    networks:
+     - nginx_network
+    ports:
+     - '$NGINX_PORT_DEFAULT:8080'
+     - '$NGINX_PORT_BALACLAVA:8081'
+    environment:
+     - NGINX_HOST=$NGINX_HOST
+     - NGINX_PORT=$NGINX_PORT
+
+volumes:
+  nginx_templates: # Named volume for PostgreSQL data persistence
+  nginx_config: # Store for nginx condifuration files that can be referenced in default.conf
+  nas-nginx:
+    driver_opts:
+      type: nfs
+      o: "addr=nas-home.local,rw,nfsvers=4"
+      device: :/volume1/hs_nginx/
+
+# Network configuration section for defining how services will communicate internally
+networks:
+  nginx_network:
+    driver: bridge # Uses a bridge network for inter-service communication
