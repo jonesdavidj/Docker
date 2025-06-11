@@ -22,5 +22,5 @@ services:
 
 # Network configuration section for defining how services will communicate internally
 networks:
-  cloudflare-tunnel:
+  cloudflare_tunnel:
     driver: bridge # Uses a bridge network for inter-service communication
