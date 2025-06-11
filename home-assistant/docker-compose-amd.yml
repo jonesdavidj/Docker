@@ -1,0 +1,31 @@
+version: "3.7" # Specifies the version of the Docker Compose file format
+
+# This section defines all the services that make up the application stack for nginx
+services:
+  # Main application service configuration
+  home-assistant:
+    container_name: home-assistant # Unique identifier for this container to distinguish it from others
+    image: 	ghcr.io/home-assistant/home-assistant:latest # Specifies the Docker image version to use
+    platform: linux/amd64
+    restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
+    volumes:
+     - nas-home-assistant:/config
+    networks:
+     - home-assistant_network
+    ports:
+     - '8123:8123'
+    environment:
+     - TZ = Europe/London
+    privileged: true
+
+volumes:
+  nas-home-assistant:
+    driver_opts:
+      type: nfs
+      o: "addr=nas-home.local,rw,nfsvers=4"
+      device: :/volume1/pi_home-assistant/
+
+# Network configuration section for defining how services will communicate internally
+networks:
+  home-assistant_network:
+    driver: bridge # Uses a bridge network for inter-service communication
