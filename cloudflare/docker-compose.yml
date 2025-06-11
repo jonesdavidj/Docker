@@ -8,17 +8,14 @@ services:
     image: cloudflare/cloudflared:latest
     platform: linux/x86_64
     restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
-    command: tunnel --no-autoupdate run --token $TUNNEL_TOKEN # Command to run inside the container, using an environment variable for the token
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN} # Command to run inside the container, using an environment variable for the token
     volumes:
-     - type: volume
-       source: ./cloudflared
-       target: /etc/cloudflared # Mounts a volume for persistent storage of configuration files
+     - ./cloudflared:/etc/cloudflared # Mounts a volume for persistent storage of configuration files
     networks:
      - cloudflare_tunnel
-    ports:
-     - 5454:5454
     environment:
      - TZ=Europe/London
+     - TUNNEL_TOKEN=${TUNNEL_TOKEN}
 
 # Network configuration section for defining how services will communicate internally
 networks:
