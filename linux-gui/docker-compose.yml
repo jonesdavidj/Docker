@@ -12,6 +12,9 @@ services:
      - type: volume
        source: nas-linux-gui
        target: /config # Mounts a volume for persistent storage of data
+    ports:
+      - "5901:5901" # Maps the VNC port for remote desktop access
+      - "6080:80"   # Maps the HTTP port for web access to the desktop environment
     networks:
      - linux_gui_network
     environment:
