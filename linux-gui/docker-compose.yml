@@ -14,8 +14,6 @@ services:
        target: /config # Mounts a volume for persistent storage of data
     networks:
      - linux_gui_network
-    ports:
-     - '$ESPHOME_PORT_EXTERNAL:$ESPHOME_PORT_DEFAULT'
     environment:
      - TZ=Europe/London
 
