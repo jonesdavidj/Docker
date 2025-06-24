@@ -28,4 +28,4 @@ volumes:
 # Network configuration section for defining how services will communicate internally
 networks:
   home-assistant_network:
-    driver: bridge # Uses a bridge network for inter-service communication
+    driver: host # Uses a bridge network for inter-service communication
