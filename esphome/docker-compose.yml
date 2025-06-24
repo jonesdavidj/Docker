@@ -1,6 +1,6 @@
 version: "3.7" # Specifies the version of the Docker Compose file format
 
-# This section defines all the services that make up the application stack for nginx
+# This section defines all the services that make up the application stack for ESPHome
 services:
   # Main application service configuration
   esphome:
@@ -12,9 +12,11 @@ services:
      - type: volume
        source: nas-esphome
        target: /config
-    network-mode: host # Uses the host's network stack, allowing direct access to host ports
-    ports:
-     - '$ESPHOME_PORT_EXTERNAL:$ESPHOME_PORT_DEFAULT'
+    network_mode: host # Uses the host's network stack, allowing direct access to host ports
+    
+    # Because I'm running in host-mode (to make use of mDNS on the server), I'll need to just accept the default port config (unless I pass in as CLI arguments).
+    #ports:
+    # - '$ESPHOME_PORT_EXTERNAL:$ESPHOME_PORT_DEFAULT'
     environment:
      - TZ=Europe/London
 
