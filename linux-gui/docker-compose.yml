@@ -25,7 +25,7 @@ volumes:
   nas-linux-gui:
     driver_opts:
       type: nfs
-      o: "addr=nas-home.local,rw,nfsvers=4"
+      o: "addr=nas-home.lan,rw,nfsvers=4"
       device: :/volume1/hs_linux_gui
   
 # Network configuration section for defining how services will communicate internally

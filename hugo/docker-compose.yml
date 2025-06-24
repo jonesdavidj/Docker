@@ -31,7 +31,7 @@ volumes:
   nas-hugo-vol:
     driver_opts:
       type: nfs
-      o: "addr=nas-home.local,rw,nfsvers=4,soft,timeo=30,retrans=3"
+      o: "addr=nas-home.lan,rw,nfsvers=4,soft,timeo=30,retrans=3"
       device: :/volume1/hs_hugo/
 
 # Network configuration section for defining how services will communicate internally
