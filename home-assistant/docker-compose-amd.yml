@@ -10,8 +10,7 @@ services:
     restart: unless-stopped # Policy that determines the restart behavior, here set to only stop manually
     volumes:
      - nas-home-assistant:/config
-    networks:
-     - home-assistant_network
+    network_mode: host # Uses the host's network stack for direct access to ports
     ports:
      - '8123:8123'
     environment:
@@ -25,7 +24,3 @@ volumes:
       o: "addr=nas-home.local,rw,nfsvers=4"
       device: :/volume1/hs_home-assistant/
 
-# Network configuration section for defining how services will communicate internally
-networks:
-  home-assistant_network:
-    driver: host # Uses a bridge network for inter-service communication

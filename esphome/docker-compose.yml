@@ -12,8 +12,7 @@ services:
      - type: volume
        source: nas-esphome
        target: /config
-    networks:
-     - esphome_network
+    network-mode: host # Uses the host's network stack, allowing direct access to host ports
     ports:
      - '$ESPHOME_PORT_EXTERNAL:$ESPHOME_PORT_DEFAULT'
     environment:
@@ -26,8 +25,3 @@ volumes:
       type: nfs
       o: "addr=nas-home.local,rw,nfsvers=4"
       device: :/volume1/hs_esphome
-  
-# Network configuration section for defining how services will communicate internally
-networks:
-  esphome_network:
-    driver: host # Uses a bridge network for inter-service communication
