@@ -19,6 +19,6 @@ volumes:
   nas-home-assistant:
     driver_opts:
       type: nfs
-      o: "addr=nas-home.local,rw,nfsvers=4"
+      o: "addr=nas-home.lan,rw,nfsvers=4"
       device: :/volume1/hs_home-assistant/
 
