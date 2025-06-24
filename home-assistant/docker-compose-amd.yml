@@ -11,8 +11,6 @@ services:
     volumes:
      - nas-home-assistant:/config
     network_mode: host # Uses the host's network stack for direct access to ports
-    ports:
-     - '8123:8123'
     environment:
      - TZ = Europe/London
     privileged: true
