@@ -88,6 +88,4 @@ volumes:
 
 networks:
   maybe_net:
-    driver: bridge
-
-  
+    driver: host
