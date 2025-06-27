@@ -29,6 +29,7 @@ services:
     restart: unless-stopped
     environment:
       <<: *rails_env
+      DATABASE_URL: postgres://${POSTGRES_USER:-maybe_user}:${POSTGRES_PASSWORD:-maybe_password}@${DB_HOST:-db}:${DB_PORT:-5432}/${POSTGRES_DB:-maybe_production}
     depends_on:
       db:
         condition: service_healthy
