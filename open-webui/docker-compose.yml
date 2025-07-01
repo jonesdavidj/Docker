@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: openwebui
+    restart: unless-stopped
+    ports:
+      - '$OPENWEBUI_PORT:8080'
+    environment:
+      - TZ=Europe/London
+      - OPENWEBUI_SECRET_KEY=changeme_please_secure
+    volumes:
+      - /mnt/hs_openwebui/data:/app/backend/data
+    networks:
+      - default
+    dns:
+      - 192.168.1.1 # internal DNS server to resolve for .lan network
+
+networks:
+  default:
+    name: openwebui_network
