@@ -17,6 +17,7 @@ services:
     ports:
      - '$NGINX_PORT_DEFAULT:8080'
      - '$NGINX_PORT_BALACLAVA:8081'
+     - '$NGINX_PORT_OPENWEBUI:8082'
     environment:
      - NGINX_HOST=$NGINX_HOST
      - NGINX_PORT=$NGINX_PORT
