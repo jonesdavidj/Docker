@@ -11,12 +11,22 @@ services:
       - TZ=Europe/London
       - OPENWEBUI_SECRET_KEY=changeme_please_secure
     volumes:
-      - /mnt/hs_openwebui/data:/app/backend/data
+     - type: volume
+       source: nas-openweb-ui
+       target: /app/backend/data # Mounts a volume for persistent storage of data
+       
     networks:
       - default
     dns:
       - 192.168.1.1 # internal DNS server to resolve for .lan network
 
+volumes:
+  nas-openweb-ui:
+    driver_opts:
+      type: nfs
+      o: "addr=nas-home.lan,rw,nfsvers=4"
+      device: :/volume1/hs_openwebui
+  
 networks:
   default:
     name: openwebui_network
