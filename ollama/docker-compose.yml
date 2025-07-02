@@ -7,12 +7,11 @@ services:
     restart: unless-stopped
     entrypoint: ["/bin/sh", "-c"]
     command: >
-      "ollama serve & 
-       sleep 2 && 
-       ollama pull mistral && 
-       ollama pull llama3 && 
-       ollama pull gema && 
-       wait"
+      ollama serve & 
+      sleep 2 && 
+      ollama pull mistral && 
+      ollama pull llama3 && 
+      wait
     volumes:
       - ollama_data:/root/.ollama
     networks:
