@@ -5,19 +5,19 @@ services:
     image: ollama/ollama
     container_name: ollama
     restart: unless-stopped
-    entrypoint: ["/bin/sh", "-c"]
-    command: >
+    entrypoint: /bin/sh
+    command: -c '
       ollama serve & 
       sleep 2 && 
       ollama pull mistral && 
       ollama pull llama3 && 
-      wait
+      wait' 
+    ports:
+      - "11434:11434"  # Optional for debugging
     volumes:
       - ollama_data:/root/.ollama
     networks:
       - nginx_network
-    ports:
-      - "11434:11434"  # Optional for debugging
 
 volumes:
   ollama_data:
