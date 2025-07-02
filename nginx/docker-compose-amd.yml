@@ -35,4 +35,3 @@ volumes:
 networks:
   nginx_network:
     driver: bridge # Uses a bridge network for inter-service communication
-    external: true
