@@ -10,6 +10,8 @@ services:
     environment:
       - TZ=Europe/London
       - OPENWEBUI_SECRET_KEY=${OPENWEBUI_SECRET_KEY}
+      - OPENWEBUI_AUTH_ENABLED=true
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     volumes:
      - type: volume
        source: nas-openweb-ui
