@@ -16,6 +16,7 @@ services:
        target: /app/backend/data # Mounts a volume for persistent storage of data
        
     networks:
+      - default # Uses the default network for basic connectivity
       - nginx_network
     dns:
       - 192.168.1.1 # internal DNS server to resolve for .lan network
@@ -30,5 +31,7 @@ volumes:
       device: :/volume1/hs_openwebui
   
 networks:
+  default:
+    driver: bridge # Uses a bridge network for basic service communication
   nginx_network:
     external: true
