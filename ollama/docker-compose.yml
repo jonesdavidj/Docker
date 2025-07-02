@@ -10,7 +10,15 @@ services:
     networks:
       - nginx_network
     ports:
-      - "11434:11434"  # Optional: for testing outside Docker
+      - "11434:11434"  # Optional for testing
+    command: >
+      sh -c "
+        ollama serve &
+        sleep 2 &&
+        ollama pull mistral &&
+        ollama pull llama3 &&
+        wait
+      "
 
 volumes:
   ollama_data:
