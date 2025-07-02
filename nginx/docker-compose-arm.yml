@@ -20,7 +20,7 @@ services:
     environment:
      - NGINX_HOST=$NGINX_HOST
      - NGINX_PORT=$NGINX_PORT
-
+     
 volumes:
   nginx_templates: # Named volume for PostgreSQL data persistence
   nginx_config: # Store for nginx condifuration files that can be referenced in default.conf
@@ -33,4 +33,5 @@ volumes:
 # Network configuration section for defining how services will communicate internally
 networks:
   nginx_network:
+    name: nginx_network # Name of the network for service communication
     driver: bridge # Uses a bridge network for inter-service communication
