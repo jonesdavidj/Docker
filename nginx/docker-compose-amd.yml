@@ -34,4 +34,6 @@ volumes:
 # Network configuration section for defining how services will communicate internally
 networks:
   nginx_network:
+    name: nginx_network
     driver: bridge # Uses a bridge network for inter-service communication
+    external: true
