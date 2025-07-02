@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: unless-stopped
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - nginx_network
+    ports:
+      - "11434:11434"  # Optional: for testing outside Docker
+
+volumes:
+  ollama_data:
+
+networks:
+  nginx_network:
+    external: true
