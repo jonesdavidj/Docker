@@ -17,6 +17,7 @@ services:
         sleep 2 &&
         ollama pull mistral &&
         ollama pull llama3 &&
+        ollama pull gema &&
         wait
       "
 
